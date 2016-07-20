@@ -22,10 +22,10 @@ for filename in image_files:
     if match:
         img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 
-        newx, newy = img.shape[1] / 4, img.shape[0] / 4  # new size (w,h)
-        new_image = cv2.resize(img, (newx, newy))
+        scale_factor = 0.3
+        new_image = cv2.resize(img, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_CUBIC)
 
-        new_filename = 'histo_equalized_' + filename
+        new_filename = str(scale_factor) + 'x_scaled_' + filename
 
         #cv2.imwrite(save_directory + new_filename, equalized_img)
 
