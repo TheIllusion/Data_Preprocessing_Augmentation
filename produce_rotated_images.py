@@ -7,8 +7,11 @@ import pylab
 from matplotlib import pyplot as plt
 
 # get list of image files
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/image_pyramids'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/rotated/'
+#source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/image_pyramids'
+#save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/rotated/'
+
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/image_pyramids'
+save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/rotated/'
 
 os.chdir(source_image_dir)
 
@@ -21,7 +24,8 @@ rotate_degrees = [10, 20, 30, 0, 330, 340, 350]
 
 idx = 0
 for filename in image_files:
-    match = re.search(".png", filename)
+    #match = re.search(".png", filename)
+    match = re.search(".jpg", filename)
     if match:
         img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 

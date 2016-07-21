@@ -7,8 +7,11 @@ import pylab
 from matplotlib import pyplot as plt
 
 # get list of image files
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/rotated'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/shifted/'
+#source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/rotated'
+#save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/shifted/'
+
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/rotated'
+save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/shifted/'
 
 os.chdir(source_image_dir)
 
@@ -22,7 +25,8 @@ vertical_shift_factors = [0, 5, 10, -5, -10]
 
 idx = 0
 for filename in image_files:
-    match = re.search(".png", filename)
+    #match = re.search(".png", filename)
+    match = re.search(".jpg", filename)
     if match:
         img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 

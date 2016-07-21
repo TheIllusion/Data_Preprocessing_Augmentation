@@ -7,8 +7,11 @@ import pylab
 from matplotlib import pyplot as plt
 
 # get list of image files
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/cropped_images/'
+#source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone'
+#save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/cropped_images/'
+
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung'
+save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/cropped_images/'
 
 os.chdir(source_image_dir)
 
@@ -18,7 +21,8 @@ if not os.path.exists(save_directory):
     os.mkdir(save_directory)
 
 for filename in image_files:
-    match = re.search(".png", filename)
+    #match = re.search(".png", filename)
+    match = re.search(".jpg", filename)
     if match:
         img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 
