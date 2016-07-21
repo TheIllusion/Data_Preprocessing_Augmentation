@@ -7,8 +7,8 @@ import pylab
 from matplotlib import pyplot as plt
 
 # get list of image files
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted/image_pyramids'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted/rotated/'
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/image_pyramids'
+save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/rotated/'
 
 os.chdir(source_image_dir)
 
@@ -19,6 +19,7 @@ if not os.path.exists(save_directory):
 
 rotate_degrees = [10, 20, 30, 0, 330, 340, 350]
 
+idx = 0
 for filename in image_files:
     match = re.search(".png", filename)
     if match:
@@ -38,8 +39,12 @@ for filename in image_files:
 
                 new_filename = str(rotate_degree) + '_' + filename
 
-                print new_filename
-
                 cv2.imwrite(save_directory + new_filename, new_image)
+
+                #print new_filename
+
+                if idx % 1000 == 0:
+                    print 'idx = ', idx
+                idx = idx + 1
 
                 #plt.imshow(new_image, cmap=pylab.gray()), plt.colorbar(), plt.show()

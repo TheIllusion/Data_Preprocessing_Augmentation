@@ -7,8 +7,8 @@ import pylab
 from matplotlib import pyplot as plt
 
 # get list of image files
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted/cropped_images/'
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone'
+save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/cropped_images/'
 
 os.chdir(source_image_dir)
 
