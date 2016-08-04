@@ -10,8 +10,8 @@ from matplotlib import pyplot as plt
 #source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone'
 #save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/cropped_images/'
 
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/cropped_images/'
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned'
+save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned/cropped_images/'
 
 os.chdir(source_image_dir)
 
