@@ -26,7 +26,9 @@ for filename in image_files:
         img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 
         # create a CLAHE object (Arguments are optional).
+        #clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+
         equalized_img = clahe.apply(img)
 
         new_filename = 'adap_histoeq_' + filename
