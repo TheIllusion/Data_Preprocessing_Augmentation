@@ -5,13 +5,13 @@ import cv2
 import os
 
 # get list of image files
-#source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/shifted'
-#save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/resized/'
+source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/cropped_images'
+save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/resized/'
 
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/shifted'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/resized/'
+#source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/cropped_images'
+#save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/resized/'
 
-target_image_size = (128, 128)
+target_image_size = (512, 512)
 
 def resize_images():
     idx = 0

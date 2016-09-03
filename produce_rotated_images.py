@@ -7,11 +7,11 @@ import pylab
 from matplotlib import pyplot as plt
 
 # get list of image files
-#source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/image_pyramids'
-#save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/rotated/'
+source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/resized'
+save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/rotated/'
 
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/image_pyramids'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/rotated/'
+#source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/resized'
+#save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/rotated/'
 
 os.chdir(source_image_dir)
 

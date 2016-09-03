@@ -10,8 +10,8 @@ from matplotlib import pyplot as plt
 #source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/histogram_equalized_images'
 #save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/image_pyramids/'
 
-source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/cropped_images'
-save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/NHN_palm_aligned_Marking_Result/Result_Saengmyoung/image_pyramids/'
+source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/shifted'
+save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/image_pyramids/'
 
 os.chdir(source_image_dir)
 
@@ -20,10 +20,12 @@ image_files = glob.glob('*.*')
 if not os.path.exists(save_directory):
     os.mkdir(save_directory)
 
-target_image_size = (450, 450)
+target_image_size = (512, 512)
 
-scale_factors = [0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3]
+#scale_factors = [0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3]
+scale_factors = [1.0, 1.1, 1.2, 1.3]
 
+idx = 0
 for filename in image_files:
     #match = re.search(".png", filename)
     match = re.search(".jpg", filename)
@@ -37,7 +39,7 @@ for filename in image_files:
             if scale_factor <= 1:
                 temp_image = cv2.resize(img, None, fx=scale_factor, fy=scale_factor, interpolation=cv2.INTER_CUBIC)
 
-                calculated_margin = int((450 - 450 * scale_factor) / 2)
+                calculated_margin = int((512 - 512 * scale_factor) / 2)
                 new_image = cv2.copyMakeBorder(temp_image,
                                                calculated_margin,
                                                calculated_margin,
@@ -51,13 +53,16 @@ for filename in image_files:
                 new_image = img
 
             else:
-                crop_margin = 0.5 * (width - width * (1 / scale_factor))
+                crop_margin = int(0.5 * (width - width * (1 / scale_factor)))
                 new_image = img[crop_margin : height-crop_margin, crop_margin : width-crop_margin]
                 new_image = cv2.resize(new_image, target_image_size, interpolation=cv2.INTER_CUBIC)
 
             new_filename = str(scale_factor) + 'x_scaled_' + filename
 
-            print new_filename
+            idx = idx + 1
+            if idx % 1000 == 0:
+                print new_filename
+                print str(idx)
 
             cv2.imwrite(save_directory + new_filename, new_image)
 
