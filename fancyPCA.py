@@ -7,13 +7,13 @@ import re
 # produce color variations for data augmentation purposes
 
 source_image_dir = '/home/nhnent/H1/users/rklee/Data/gender_recognition/categorized/male'
-fancyPCA_save_directory = '/home/nhnent/H1/users/rklee/Data/gender_recognition/categorized/male/fancyPCA/'
-random_save_directory = '/home/nhnent/H1/users/rklee/Data/gender_recognition/categorized/male/random/'
+fancyPCA_save_directory = '/home/nhnent/H1/users/mskang/temp/feasible_test/fancyPCA/'
+random_save_directory = '/home/nhnent/H1/users/mskang/temp/feasible_test/random/'
 
 '''
-source_image_dir = '/home/nhnent/H1/users/rklee/Data/gender_recognition'
-fancyPCA_save_directory = '/home/nhnent/H1/users/rklee/Data/gender_recognition/fancyPCA/'
-random_save_directory = '/home/nhnent/H1/users/rklee/Data/gender_recognition/random/'
+    source_image_dir = '/home/nhnent/H1/users/rklee/Data/gender_recognition'
+    fancyPCA_save_directory = '/home/nhnent/H1/users/rklee/Data/gender_recognition/fancyPCA/'
+    random_save_directory = '/home/nhnent/H1/users/rklee/Data/gender_recognition/random/'
 '''
 
 
@@ -21,51 +21,70 @@ def fancyPCA(imagePath):
     im = cv2.imread(imagePath, -1)
     imd = im / 255.0
 
-    m = len(imd)
-    # print m
-    n = len(imd[0])
-    # print n
+    upperThreshold = 1.0
+    lowerThreshold = 0.0
 
-    im1 = np.reshape(imd[:, :, 0], [1, m * n])
-    im2 = np.reshape(imd[:, :, 1], [1, m * n])
-    im3 = np.reshape(imd[:, :, 2], [1, m * n])
+    while_flag = True
 
-    m1 = np.mean(im1)
-    m2 = np.mean(im2)
-    m3 = np.mean(im3)
+    result = np.zeros(shape=im.shape)
 
-    d1 = im1 - m1
-    d2 = im2 - m2
-    d3 = im3 - m3
+    while while_flag == True:
 
-    data = np.hstack((d1.T, d2.T, d3.T))
-    datat = data.T
+        m = len(imd)
+        # print m
+        n = len(imd[0])
+        # print n
 
-    d, v = np.linalg.eig(np.dot(data.T, data))
+        im1 = np.reshape(imd[:, :, 0], [1, m * n])
+        im2 = np.reshape(imd[:, :, 1], [1, m * n])
+        im3 = np.reshape(imd[:, :, 2], [1, m * n])
 
-    dv = np.reshape(np.sqrt(d), [3, 1])
+        m1 = np.mean(im1)
+        m2 = np.mean(im2)
+        m3 = np.mean(im3)
 
-    val = np.dot(v, np.multiply(0.1 * np.random.rand(3, 1), dv))
+        d1 = im1 - m1
+        d2 = im2 - m2
+        d3 = im3 - m3
 
-    # print val
-    # print val[0]/255.0
-    # print val[1]/255.0
-    # print val[2]/255.0
+        data = np.hstack((d1.T, d2.T, d3.T))
+        datat = data.T
 
-    b, g, r = cv2.split(imd)
+        d, v = np.linalg.eig(np.dot(data.T, data))
 
-    b = b + 4.5 * (val[0] / 255.0)
-    g = g + 4.5 * (val[1] / 255.0)
-    r = r + 4.5 * (val[2] / 255.0)
+        if d.any() < 0:
+            print 'd is minus!', str(d)
 
-    if b.any() < 0:
-        print 'b is minus!', str(b)
-    if g.any() < 0:
-        print 'g is minus!', str(g)
-    if r.any() < 0:
-        print 'r is minus!', str(r)
+        dv = np.reshape(np.sqrt(d), [3, 1])
 
-    result = cv2.merge((b, g, r))
+        val = np.dot(v, np.multiply(0.1 * np.random.rand(3, 1), dv))
+
+        # print val
+        # print val[0]/255.0
+        # print val[1]/255.0
+        # print val[2]/255.0
+
+        b, g, r = cv2.split(imd)
+
+        b = b + 4.5 * (val[0] / 255.0)
+        g = g + 4.5 * (val[1] / 255.0)
+        r = r + 4.5 * (val[2] / 255.0)
+
+        if b.any() < 0:
+            print 'b is minus!', str(b)
+        if g.any() < 0:
+            print 'g is minus!', str(g)
+        if r.any() < 0:
+            print 'r is minus!', str(r)
+
+        result = cv2.merge((b, g, r))
+
+        if (np.mean(result) < lowerThreshold) | (np.mean(result) > upperThreshold):
+            print np.mean(result)
+        else:
+            # print np.mean(result)
+            while_flag = False
+            return result
 
     return result
 
@@ -88,7 +107,6 @@ def random(imagePath):
         print 'r is minus!', str(r)
 
     result = cv2.merge((b, g, r))
-
     # print np.random.standard_normal()
 
     return result
@@ -110,13 +128,13 @@ for filename in image_files:
     # match = re.search(".png", filename)
     match = re.search(".jpg", filename)
     if match:
-        for i in range(1, 10):
+        for i in range(1, 2):
             result_img = fancyPCA(filename)
             cv2.imwrite(fancyPCA_save_directory + 'fancyPCA_' + str(i) + '_' + filename, result_img * 255.0)
 
             result_img = random(filename)
             cv2.imwrite(random_save_directory + 'random_' + str(i) + '_' + filename, result_img * 255.0)
-            # print str(i)+'th process done.'
+        # print str(i)+'th process done.'
         if file_idx % 100 == 0:
             print str(file_idx) + 'th file done.'
         file_idx = file_idx + 1
