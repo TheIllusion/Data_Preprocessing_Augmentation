@@ -61,9 +61,9 @@ def fancyPCA(imagePath):
     if b.any() < 0:
         print 'b is minus!', str(b)
     if g.any() < 0:
-        print 'b is minus!', str(g)
+        print 'g is minus!', str(g)
     if r.any() < 0:
-        print 'b is minus!', str(r)
+        print 'r is minus!', str(r)
 
     result = cv2.merge((b, g, r))
 
@@ -83,9 +83,9 @@ def random(imagePath):
     if b.any() < 0:
         print 'b is minus!', str(b)
     if g.any() < 0:
-        print 'b is minus!', str(g)
+        print 'g is minus!', str(g)
     if r.any() < 0:
-        print 'b is minus!', str(r)
+        print 'r is minus!', str(r)
 
     result = cv2.merge((b, g, r))
 
