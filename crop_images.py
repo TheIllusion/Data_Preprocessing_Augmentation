@@ -7,11 +7,11 @@ import pylab
 from matplotlib import pyplot as plt
 
 # get list of image files
-#source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone'
-#save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/cropped_images/'
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/hand_classifier/From_SVCs/nonhand_candidates_svc_refined'
+save_directory = '/Users/Illusion/Documents/Data/palm_data/hand_classifier/From_SVCs/nonhand_candidates_svc_refined/cropped_images/'
 
-source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512'
-save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/cropped_images/'
+#source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512'
+#save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/cropped_images/'
 
 os.chdir(source_image_dir)
 

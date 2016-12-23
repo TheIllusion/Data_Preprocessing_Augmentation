@@ -7,28 +7,29 @@ import pylab
 from matplotlib import pyplot as plt
 
 # get list of image files
-#source_image_dir = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/rotated'
-#save_directory = '/Users/Illusion/Documents/Data/palm_data/NHN_palms/background_subtracted_skin_tone/shifted/'
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/hand_classifier/From_SVCs/nonhand_candidates_svc_refined'
+save_directory = '/Users/Illusion/Documents/Data/palm_data/hand_classifier/From_SVCs/nonhand_image_shifted/'
 
-source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/rotated'
-save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/shifted/'
+#source_image_dir = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/rotated'
+#save_directory = '/media/illusion/ML_DATA_M550_SSD/palm_data/experiment9_512_512/Saengmyoung/shifted/'
 
 os.chdir(source_image_dir)
 
-image_files = glob.glob('*.*')
+image_files = glob.glob('*.jpg')
 
 if not os.path.exists(save_directory):
     os.mkdir(save_directory)
 
-horizontal_shift_factors = [0, 5, 10, -5, -10]
-vertical_shift_factors = [0, 5, 10, -5, -10]
+horizontal_shift_factors = [50, 50]
+vertical_shift_factors = [-50, 50]
 
 idx = 0
 for filename in image_files:
     #match = re.search(".png", filename)
     match = re.search(".jpg", filename)
     if match:
-        img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+        #img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+        img = cv2.imread(filename, cv2.IMREAD_COLOR)
 
         if not (img == None):
 

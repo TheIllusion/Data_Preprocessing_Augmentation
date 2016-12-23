@@ -6,9 +6,15 @@ import re
 
 # produce color variations for data augmentation purposes
 
+'''
 source_image_dir = '/home/nhnent/H1/users/rklee/Data/gender_recognition/categorized/male'
 fancyPCA_save_directory = '/home/nhnent/H1/users/mskang/temp/feasible_test/fancyPCA/'
 random_save_directory = '/home/nhnent/H1/users/mskang/temp/feasible_test/random/'
+'''
+
+source_image_dir = '/Users/Illusion/Documents/Data/palm_data/hand_classifier/From_SVCs/nonhand_candidates_svc_refined'
+fancyPCA_save_directory = '/Users/Illusion/Documents/Data/palm_data/hand_classifier/From_SVCs/nonhand_fancyPCA/'
+random_save_directory = '/Users/Illusion/Documents/Data/palm_data/hand_classifier/From_SVCs/nonhand_random/'
 
 '''
     source_image_dir = '/home/nhnent/H1/users/rklee/Data/gender_recognition'
@@ -114,7 +120,7 @@ def random(imagePath):
 
 os.chdir(source_image_dir)
 
-image_files = glob.glob('*.*')
+image_files = glob.glob('*.jpg')
 
 if not os.path.exists(fancyPCA_save_directory):
     os.mkdir(fancyPCA_save_directory)
@@ -134,6 +140,7 @@ for filename in image_files:
 
             result_img = random(filename)
             cv2.imwrite(random_save_directory + 'random_' + str(i) + '_' + filename, result_img * 255.0)
+
         # print str(i)+'th process done.'
         if file_idx % 100 == 0:
             print str(file_idx) + 'th file done.'
