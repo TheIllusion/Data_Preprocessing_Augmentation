@@ -1,19 +1,18 @@
 import os
-import re
+import re, glob
 import shutil
 import cv2
 import numpy as np
 
-FILE_LIST_PATH = '/data_ssd/users/rklee/palm/sm/extracted_result/right_hand_training_list.txt'
-IMAGE_PATH = '/data_ssd/users/rklee/data/palm/hand_classifier/right_hand/'
-DEST_IMAGE_PATH = '/data_ssd/users/rklee/data/palm/hand_classifier/left_hand/'
+IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/official_training_set/test/'
+DEST_IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/official_training_set/original_all_flipped/'
 
-file_list_file = open(FILE_LIST_PATH)
-file_list = file_list_file.readlines()
-file_list_len = len(file_list)
+os.chdir(IMAGE_PATH)
+jpg_files = glob.glob('*.jpg')
+max_test_index = len(jpg_files)
 
-for idx in xrange(file_list_len):
-    filename_temp = file_list[idx]
+for idx in xrange(max_test_index):
+    filename_temp = jpg_files[idx]
 
     match_1 = re.search(".jpg", filename_temp)
     if match_1:
