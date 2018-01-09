@@ -18,11 +18,11 @@ horizontal_shift_factors = [-50, 0, 50]
 vertical_shift_factors = [-50, 0, 50]
 
 # rotating factors
-rotate_degrees = [10, 20, 30, 0, 330, 340, 350]
+rotate_degrees = [10, 20, 0, 340, 350]
 
 # zoom factors
 # scale_factors = [0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3]
-scale_factors = [0.9, 1.2, 1.4]
+scale_factors = [0.95, 1.1, 1.2]
 
 def augment_imgs_with_shifting(source_path):
     os.chdir(source_path)
