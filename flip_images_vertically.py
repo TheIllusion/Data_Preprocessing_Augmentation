@@ -4,12 +4,15 @@ import shutil
 import cv2
 import numpy as np
 
-IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/official_training_set/test/'
-DEST_IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/official_training_set/original_all_flipped/'
+IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/lfw/parts_lfw_funneled_gt_jpg_images/'
+DEST_IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/lfw/parts_lfw_funneled_gt_jpg_images_flipped/'
 
 os.chdir(IMAGE_PATH)
 jpg_files = glob.glob('*.jpg')
 max_test_index = len(jpg_files)
+
+if not os.path.exists(DEST_IMAGE_PATH):
+    os.mkdir(DEST_IMAGE_PATH)
 
 for idx in xrange(max_test_index):
     filename_temp = jpg_files[idx]
@@ -38,4 +41,6 @@ for idx in xrange(max_test_index):
         print 'cannot flip the image ' + filename
         continue
 
-    cv2.imwrite(DEST_IMAGE_PATH + filename, flipped_image)
+    cv2.imwrite(DEST_IMAGE_PATH + 'flipped_' + filename, flipped_image)
+
+print 'finished'
