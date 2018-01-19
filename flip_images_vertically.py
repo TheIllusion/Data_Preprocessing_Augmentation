@@ -4,8 +4,8 @@ import shutil
 import cv2
 import numpy as np
 
-IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/lfw/parts_lfw_funneled_gt_jpg_images/'
-DEST_IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/lfw/parts_lfw_funneled_gt_jpg_images_flipped/'
+IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/lfw/lfw_funneled_jpg_images_background_augmented/'
+DEST_IMAGE_PATH = '/Users/Illusion/Documents/Data/hair_semantic_segmentation/lfw/lfw_funneled_jpg_images_background_augmented_flipped/'
 
 os.chdir(IMAGE_PATH)
 jpg_files = glob.glob('*.jpg')
@@ -42,5 +42,8 @@ for idx in xrange(max_test_index):
         continue
 
     cv2.imwrite(DEST_IMAGE_PATH + 'flipped_' + filename, flipped_image)
+
+    if idx % 100 == 0:
+        print 'idx:', str(idx)
 
 print 'finished'
